@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Data Connection"
+  DTS:DTSID="{0BF828FD-66C4-407A-8AFB-8140831434C3}"
+  DTS:CreationName="ADO.NET:System.Data.OleDb.OleDbConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Initial Catalog=eLands;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;"
+      DTS:ConnectByProxy="True" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
