@@ -32,8 +32,6 @@ namespace Oop1
 
                 Console.WriteLine($"{humanBeing.Name} color : ${humanBeing.GetColor()}");
             }
-           
-
             Console.ReadLine();
 
         }
@@ -46,7 +44,7 @@ namespace Oop1
 
             inlineHumanBeing.Name = Console.ReadLine();
 
-            Console.WriteLine(" What is the collor of your skin ?");
+            Console.WriteLine(" What is the colour of your skin ?");
 
             inlineHumanBeing.SetColor(Console.ReadLine());
 
