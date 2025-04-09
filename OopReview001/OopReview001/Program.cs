@@ -19,12 +19,29 @@ Classes with have a unique identifier
 welcome user
 ask for private information -> request for current balance
 start a transactions window 
-send,receive,pay
+send,receive,pay 
 
+Enum -> 
+
+Boolean -> True, False 
+
+Enum -> TransactionTypes {
+
+Send
+PayBill
+PayTill
+Receive
+
+}
+
+Reimburse the account 
+Get the last 5 transactions
+Get the balance 
 
 */
 
 using OopReview001.Classes;
+using OopReview001.Enums;
 
 namespace OopReview001
 {
@@ -49,7 +66,7 @@ namespace OopReview001
             
             while (true)
             {
-                Console.WriteLine("Which Transaction would you like to perform?\n 1.Send \n 2.Request Loan \n 3.pay ");
+                Console.WriteLine("Which Transaction would you like to perform?\n 1.Send \n 2.Request Loan \n 3.pay Paybill , tillnumber  ");
 
                 string action = Console.ReadLine();
 
@@ -65,6 +82,40 @@ namespace OopReview001
             }
         }
 
+        private static Transaction PayBillTransaction(User sender)
+        {
+           
+            return new Transaction()
+            {
+                Id = 1,
+                Amount = dAmount,
+                Sender = sender,
+                Receiver = receiver,
+                Type = TransactionTypes.PayBill
+            };
+        }
+
+        private static Transaction PayTillTransaction(User sender)
+        {
+            /**
+             * Type in paybill
+             * Type in account_number
+             * Type in amount
+             * Validate aganist your balance -> payout
+             * 
+             */
+
+         
+            return new Transaction()
+            {
+                Id = 1,
+                Amount = dAmount,
+                Sender = sender,
+                Receiver = receiver,
+                Type = TransactionTypes.PayTill
+            };
+        }
+
         private static Transaction SendTransaction(User sender)
         {
             
@@ -78,7 +129,7 @@ namespace OopReview001
             string amount = Console.ReadLine();
             
             double dAmount = double.Parse(amount);
-
+            
             if (sender.Balance < dAmount)
             {
                 Console.WriteLine("You do not have enough money");
@@ -91,6 +142,7 @@ namespace OopReview001
                 Amount = dAmount,
                 Sender = sender,
                 Receiver = receiver,
+                Type = TransactionTypes.Send
             };
 
         }
