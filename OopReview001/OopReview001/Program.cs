@@ -38,15 +38,21 @@ Reimburse the account
 Get the last 5 transactions
 Get the balance 
 
+Paybill Transaction 
+Deducting and Incrementing Balances 
+Reports
+
 */
 
 using OopReview001.Classes;
 using OopReview001.Enums;
 
+
 namespace OopReview001
 {
     class StkClass
     {
+        // Transient , Single , Scoped 
         public static void Main(string[] args)
         {
             
@@ -54,10 +60,11 @@ namespace OopReview001
 
             User simpleUser = GetInformation();
             
+           //simpleUser.Balance
+            
             Console.WriteLine(simpleUser.GetWelcomeMessage());
 
             TransactionInteraction(simpleUser);
-
         }
 
         private static void TransactionInteraction(User sender)
@@ -66,13 +73,24 @@ namespace OopReview001
             
             while (true)
             {
-                Console.WriteLine("Which Transaction would you like to perform?\n 1.Send \n 2.Request Loan \n 3.pay Paybill , tillnumber  ");
+                Console.WriteLine("Which Transaction would you like to perform?\n 1.Send \n 2.Request Loan \n 3.pay Paybill , tillnumber \n 5.Summary  ");
 
                 string action = Console.ReadLine();
 
                 if (action.ToLower().Contains("send") || action.ToLower() == "1")
                 {
                    transactions.Add(SendTransaction(sender));
+                   
+                   Console.WriteLine($"Sending Transaction Balance : {sender.Balance}");
+                   
+                } else if (action.ToLower() == "3" || action.ToLower().Contains("paybill"))
+                {
+                    transactions.Add(PayBillTransaction(sender));
+                    
+                    Console.WriteLine($"Paying Bill : {sender.Balance}");
+                } else if (action.ToLower() == "5" || action.ToLower().Contains("summary"))
+                {
+                    TransactionSummary(transactions);
                 }
                 else
                 {
@@ -82,15 +100,51 @@ namespace OopReview001
             }
         }
 
+        private static void TransactionSummary(List<Transaction> transactions)
+        {
+            Console.WriteLine("Transaction Count : "+transactions.Count);
+        }
+
+        private static Account GetAccountInfo()
+        {
+            Account account = new Account();
+            
+            Console.WriteLine("Enter paybill number: ");
+            
+            account.PayBill= Console.ReadLine();
+            
+            Console.WriteLine("Enter account number: ");
+            
+            account.AccountNumber = Console.ReadLine();
+         
+            return account;
+        }
+
         private static Transaction PayBillTransaction(User sender)
         {
+            Account account = GetAccountInfo();
+            
+            Console.WriteLine("Enter amount: ");
+            
+            string amountString = Console.ReadLine();
+            
+            double amount = double.Parse(amountString);
+            
+            if (sender.Balance < amount)
+            {
+                Console.WriteLine("You do not have enough money");
+                throw new Exception("You do not have enough money");
+            }
+
+            
+            sender.Balance -= amount;
            
             return new Transaction()
             {
                 Id = 1,
-                Amount = dAmount,
+                Amount = amount,
                 Sender = sender,
-                Receiver = receiver,
+                PayBillAccount = account,
                 Type = TransactionTypes.PayBill
             };
         }
@@ -104,6 +158,10 @@ namespace OopReview001
              * Validate aganist your balance -> payout
              * 
              */
+            
+            User receiver = GetInformation(false);
+            
+            double dAmount=0;
 
          
             return new Transaction()
@@ -135,6 +193,8 @@ namespace OopReview001
                 Console.WriteLine("You do not have enough money");
                 throw new Exception("You do not have enough money");
             }
+            
+            sender.Balance -= dAmount;
 
             return  new Transaction()
             {

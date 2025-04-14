@@ -1,4 +1,5 @@
 using OopReview001.Contracts;
+using OopReview001.Enums;
 
 namespace OopReview001.Classes;
 
@@ -8,11 +9,14 @@ public class Transaction : IDatabase
     
     public double Amount { get;  set; }
     
-    public string Type  { get;  set; }
+    public TransactionTypes Type  { get;  set; }
     
     public User Sender { get;  set; }
     
-    public User Receiver { get;  set; }
+    //by introducing a question mark mean that the Receiver can be null;
+    public User? Receiver { get;  set; }
+    
+    public Account? PayBillAccount { get;  set; }
     
     public void Create()
     {
