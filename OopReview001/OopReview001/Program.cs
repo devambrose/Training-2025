@@ -42,6 +42,12 @@ Paybill Transaction
 Deducting and Incrementing Balances 
 Reports
 
+
+Generics -> Dependency Injection (DI)
+
+Create , Read < Delete < UPdate
+
+Classes - Services 
 */
 
 using OopReview001.Classes;
@@ -107,6 +113,8 @@ namespace OopReview001
 
         private static Account GetAccountInfo()
         {
+            // Try Catch Exception 
+            //7828499 Tr3ty2883
             Account account = new Account();
             
             Console.WriteLine("Enter paybill number: ");
@@ -124,7 +132,7 @@ namespace OopReview001
         {
             Account account = GetAccountInfo();
             
-            Console.WriteLine("Enter amount: ");
+            Console.WriteLine("Enter amount:");
             
             string amountString = Console.ReadLine();
             
@@ -235,6 +243,13 @@ namespace OopReview001
             
                 bal  = double.Parse(balance);
             }
+            
+            /*
+            
+              Backend > C# , Web Application, API 
+              Database > SQL , POSGRESQL , MSSQL
+             
+             */
           
             
             return new User

@@ -14,7 +14,7 @@ public class Transaction : IDatabase
     public User Sender { get;  set; }
     
     //by introducing a question mark mean that the Receiver can be null;
-    public User? Receiver { get;  set; }
+    public User? Receiver { get; set; } = null;
     
     public Account? PayBillAccount { get;  set; }
     
